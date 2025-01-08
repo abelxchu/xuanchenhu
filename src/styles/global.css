@@ -1,0 +1,293 @@
+/* Import variables and components */
+@import './variables.css';
+@import './components/icons.css';
+@import './components/digital-card.css';
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--layout-background);
+  color: var(--text-primary);
+  font-family: var(--font-english);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Layout */
+header {
+  height: 56px;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container.main-container {
+  padding: 24px 16px;
+  gap: 24px;
+}
+
+
+/* Container */
+.container {
+  width: 100%;
+  padding: 0 16px;
+  margin: 0 auto;
+}
+
+.nav-menu .container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Footer */
+.home-footer {
+  width: 100%;
+  padding: 24px 24px;
+  text-align: center;
+}
+
+.copyright.note {
+  color: var(--text-secondary);
+  font-family: var(--font-english);
+  font-size: var(--font-note);
+  font-weight: var(--weight-light);
+  letter-spacing: 1px;
+}
+
+/* Utilities */
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.cta {
+  color: var(--cta-color);
+}
+
+.chinese {
+  font-family: var(--font-chinese);
+}
+
+/* Buttons */
+.button-primary {
+  background-color: var(--button-primary);
+  color: var(--layout-background);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.button-secondary {
+  background-color: var(--button-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--stroke);
+  padding: 12px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Responsive Breakpoints */
+@media screen and (min-width: 744px) {
+  /* Container */
+  .container {
+    width: 100%;
+  }
+
+  /* Footer */
+  .home-footer {
+    padding: 24px 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  /* Container */
+  .container {
+    max-width: 1280px;
+  }
+
+  /* Footer */
+  .home-footer {
+    padding: 24px 48px;
+  }
+}
+
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px 0;
+}
+
+.home-intro {
+    color: var(--text-primary);
+    font-size: var(--font-body);
+    font-weight: var(--weight-regular);
+    line-height: 20px;
+    letter-spacing: 1px;
+    text-align: center;
+}
+
+/* Home Link */
+.home-link {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-h3);
+  font-weight: var(--weight-semibold);
+  color: var(--text-primary);
+  letter-spacing: 1.6px;
+  padding: 8px;
+  font-style: normal;
+  text-decoration: none;
+  height: 40px;
+  transition: color 0.3s ease;
+}
+
+.home-link:hover {
+  color: var(--text-secondary);
+}
+
+/* Navigation Menu */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(246, 246, 246, 0.70);
+  backdrop-filter: blur(8px);
+  display: none;
+  z-index: 1000;
+}
+
+.nav-menu.active {
+  display: flex;
+  align-items: center;
+}
+
+.nav-section {
+  margin-bottom: 24px;
+  margin-left: 48px;
+}
+
+.nav-section:last-child {
+  margin-bottom: 0;
+}
+
+.nav-section:first-child .home-link {
+  padding-left: 0;
+}
+
+.nav-section:nth-child(2) {
+  font-size: var(--font-h3);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 1.6px;
+}
+
+.nav-section:nth-child(3) {
+  font-size: var(--font-body);
+  font-weight: var(--weight-regular);
+  line-height: normal;
+  letter-spacing: 1px;
+}
+
+.nav-link {
+  display: block;
+  padding: 8px 0;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-secondary);
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  text-underline-offset: 8px;
+}
+
+/* Responsive Breakpoints */
+@media screen and (min-width: 744px) {
+  /* Container */
+  .container {
+    width: 100%;
+  }
+
+  /* Footer */
+  .home-footer {
+    padding: 24px 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  /* Container */
+  .container {
+    max-width: 1280px;
+  }
+
+  /* Footer */
+  .home-footer {
+    padding: 24px 48px;
+  }
+}
+ 
+/* 通用頁面樣式 */
+.page-content {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.content-section {
+    margin-bottom: 40px;
+}
+
+.content-section:last-child {
+    margin-bottom: 0;
+}
+
+.page-title {
+    font-size: var(--font-h2);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 16px;
+    letter-spacing: 1.28px;
+}
+
+.section-text {
+    font-size: var(--font-body);
+    font-weight: var(--weight-regular);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+
+.section-title {
+    font-size: var(--font-h3);
+    font-weight: var(--weight-semibold);
+    margin-bottom: 16px;
+    letter-spacing: 1.28px;
+}
