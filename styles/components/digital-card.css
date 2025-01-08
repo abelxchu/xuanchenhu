@@ -1,0 +1,154 @@
+.digital-card {
+    width: 308px;
+    height: 478.5px;
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+/* 當卡片翻轉時 */
+.digital-card.flipped .card-inner {
+    transform: rotateY(180deg) !important; /* 使用 !important 確保翻轉效果優先 */
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 32px;
+    backdrop-filter: blur(15px);
+    transform-style: preserve-3d;
+}
+
+/* 卡片正面 - 底層 */
+.card-front {
+    background: rgba(220, 220, 220, 0.2);
+    position: relative;
+    transform: rotateY(0deg);
+}
+
+/* 卡片正面 - 上層背景 */
+.card-front::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 308px;
+    height: 346.5px;
+    background: rgba(189, 189, 189, 0.3);
+    border-radius: 0 0 32px 32px;
+    z-index: 1;
+}
+
+/* 卡片背面 */
+.card-back {
+    background: rgba(220, 220, 220, 0.2);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+}
+
+/* Dark mode */
+:root.dark-mode .card-front {
+    background: rgba(220, 220, 220, 0.2);
+}
+
+:root.dark-mode .card-front::before {
+    background: rgba(189, 189, 189, 0.3);
+}
+
+:root.dark-mode .card-back {
+    background: rgba(220, 220, 220, 0.2);
+}
+
+/* 卡片正面 - 大頭照 */
+.card-headshot {
+    position: absolute;
+    top: 62px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 140px;
+    z-index: 2;
+}
+
+/* 卡片文字 */
+.card-text {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-primary);
+    letter-spacing: 1.4px;
+    text-align: center;
+    width: 90%;
+    z-index: 3;
+}
+
+/* 中文名 */
+.card-text.chinese {
+    top: 234px;
+    font-size: var(--font-h1);
+    font-weight: var(--weight-semibold);
+    line-height: 132%;
+}
+
+/* 英文名 */
+h4.card-text {
+    top: 282px;
+    font-size: var(--font-h4);
+    font-weight: var(--weight-medium);
+    line-height: 140%;
+}
+
+/* 職稱 */
+h2.card-text {
+    top: 342px;
+    width: 135px;
+    font-size: var(--font-h2);
+    font-weight: var(--weight-semibold);
+    text-align: left;
+    transform: translateX(-50%);
+    line-height: 140%;
+}
+
+/* 卡片背面文字 */
+.card-back-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-primary);
+    font-size: var(--font-h2);
+    font-weight: var(--weight-regular);
+    letter-spacing: 3.6px;
+    text-align: center;
+}
+
+/* 分享圖標 */
+.share-icon {
+    position: absolute;
+    top: 424px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    padding: 0;
+}
+
+.share-icon:hover {
+    transform: translateX(-50%) scale(1.1);
+}
+
+.share-icon:active {
+    transform: translateX(-50%) scale(0.95);
+}

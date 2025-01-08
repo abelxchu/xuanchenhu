@@ -1,0 +1,85 @@
+
+/* Icon Button Base */
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: color 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+
+/* 所有圖標按鈕的懸停效果 */
+.icon:hover {
+    color: var(--text-secondary);
+}
+
+/* Theme Toggle Icons */
+.theme-icon {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    width: 24px;
+    height: 24px;
+}
+
+/* Menu Toggle Icons */
+.menu-icon {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-90deg);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    width: 24px;
+    height: 24px;
+}
+
+.menu-icon.menu {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+/* 選單開啟時的圖標顯示狀態 */
+.menu-toggle.active .menu-icon.menu {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+.menu-toggle.active .menu-icon.close {
+    opacity: 1;
+    transform: rotate(0);
+}
+
+/* 漢堡選單按鈕要在選單之上 */
+.menu-toggle {
+    position: relative;
+    z-index: 1001; /* 確保按鈕在選單之上 */
+}
+
+/* 預設顯示淺色主題圖標 */
+.theme-icon.light {
+    opacity: 1;
+}
+
+.theme-icon.dark {
+    opacity: 0;
+}
+
+/* Dark mode 時切換圖標顯示 */
+:root.dark-mode .theme-icon.light {
+    opacity: 0;
+}
+
+:root.dark-mode .theme-icon.dark {
+    opacity: 1;
+}
+
+/* Dark mode */
+:root.dark-mode .icon {
+    color: var(--text-primary);
+} 
