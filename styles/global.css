@@ -327,17 +327,44 @@ ul li a:hover {
     gap: 4px;
     padding: 2px 6px;
     border-radius: 4px;
-    background-color: var(--neutral-2);
-    transition: background-color 0.2s ease;
+    background-color: var(--layout-background);
+/*     color: var(--text-primary); */
+/*     transition: background-color 0.2s ease; */
     white-space: nowrap;
 }
 
 .tool-link:hover {
     background-color: var(--neutral-3);
+    color: var(--neutral-5);
+}
+
+/* Dark mode hover effect */
+:root.dark-mode .tool-link:hover {
+    background-color: var(--neutral-4);
 }
 
 .tool-icon {
     width: 16px;
     height: 16px;
     object-fit: cover;
+}
+
+/* Perplexity icon theme switching */
+.perplexity-icon.dark-icon {
+    display: none;
+}
+
+:root.dark-mode .perplexity-icon.light-icon {
+    display: none;
+}
+
+:root.dark-mode .perplexity-icon.dark-icon {
+    display: block;
+}
+
+/* 防止電話號碼自動變成連結樣式 */
+a[href^="tel"] {
+    color: inherit;
+    text-decoration: none;
+    cursor: text;
 }
