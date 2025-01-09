@@ -283,11 +283,61 @@ main {
     font-weight: var(--weight-regular);
     line-height: 1.6;
     letter-spacing: 0.5px;
+    text-decoration: none;
 }
 
 .section-title {
-    font-size: var(--font-h3);
-    font-weight: var(--weight-semibold);
-    margin-bottom: 16px;
-    letter-spacing: 1.28px;
+  font-size: var(--font-h3);
+  font-weight: var(--weight-semibold);
+  margin-bottom: 16px;
+  letter-spacing: 1.28px;   
+}
+
+/* 列表樣式 */
+ul.section-text {
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px;
+}
+
+ul li a {
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(35, 131, 226, 0.14);
+  padding: 0 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+ul li a:visited {
+  color: inherit;
+}
+
+ul li a:hover {
+  background-color: rgba(35, 131, 226, 0.23);
+}
+
+.tool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    background-color: var(--neutral-2);
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+}
+
+.tool-link:hover {
+    background-color: var(--neutral-3);
+}
+
+.tool-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: cover;
 }

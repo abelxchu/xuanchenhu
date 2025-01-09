@@ -27,4 +27,15 @@ function initializeDigitalCard() {
 // 當 DOM 載入完成後執行
 document.addEventListener('DOMContentLoaded', () => {
     loadDigitalCard();
+
+    const studyCards = document.querySelectorAll('.study-card');
+
+    studyCards.forEach(card => {
+        card.addEventListener('click', () => {
+            const url = card.getAttribute('data-url');
+            if (url) {
+                window.open(url, '_blank'); // 在新標籤頁中打開網址
+            }
+        });
+    });
 }); 

@@ -40,4 +40,5 @@
 .study-card {
     width: 345px;
     height: 104px;
+    text-decoration: none; /* 移除底線 */
 } 
