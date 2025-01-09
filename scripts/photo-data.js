@@ -1,16 +1,16 @@
 const photoData = [
     {
-        url: '/xuanchenhu/assets/images/_DSC5461.jpeg',
+        url: '/xuanchenhu/assets/images/photo1.jpg',
         title: 'Photo 1',
         description: 'Description for photo 1'
     },
     {
-        url: '/xuanchenhu/assets/images/_DSC5436.jpeg',
+        url: '/xuanchenhu/assets/images/photo2.jpg',
         title: 'Photo 2',
         description: 'Description for photo 2'
     },
     {
-        url: '/xuanchenhu/assets/images/_DSC5546.jpeg',
+        url: '/xuanchenhu/assets/images/photo3.jpg',
         title: 'Photo 3',
         description: 'Description for photo 3'
     },
