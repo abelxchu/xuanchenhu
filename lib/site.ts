@@ -28,6 +28,5 @@ export const site = {
 export const nav = [
   { label: "Work", href: "/portfolio" },
   { label: "About", href: "/about" },
-  { label: "Field of Study", href: "/field-of-study" },
   { label: "Photography", href: "/photography" },
 ] as const;
