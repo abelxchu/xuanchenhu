@@ -1,26 +1,129 @@
+/* ============================================================
+   全站樣式與設計 token — 「液態玻璃」風格（visionOS / iOS 風）。
+   核心概念：
+   1. 底層是柔和的彩色光暈漸層（光斑），讓玻璃有東西可以「透」
+   2. 介面元素是霧面玻璃面板：backdrop-blur 模糊背景＋半透明底
+      ＋頂部一條高光（模擬玻璃邊緣的鏡面反射）
+   Tailwind v4 的設定直接寫在 CSS 裡，不需要 tailwind.config。
+   ============================================================ */
+
 @import "tailwindcss";
 
+/* 告訴 Tailwind：「dark:」開頭的樣式在 <html> 有 .dark class 時生效
+   （也就是手動切換主題，而不是跟隨系統設定） */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ---------- 亮色主題（預設） ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #f4f4f6;                       /* 底色：Apple 風淺灰 */
+  --fg: #1d1d1f;                       /* 文字：近黑 */
+  --muted: #6e6e73;                    /* 次要文字：中灰 */
+  --line: rgba(60, 60, 67, 0.14);      /* 分隔線（半透明，疊在玻璃上自然） */
+  --accent: #e0532f;                   /* 強調色：朱紅（品牌色，沿用） */
+
+  /* 玻璃面板的材質參數 */
+  --glass-bg: rgba(255, 255, 255, 0.55);      /* 玻璃本體：半透明白 */
+  --glass-border: rgba(255, 255, 255, 0.65);  /* 玻璃邊框 */
+  --glass-highlight: rgba(255, 255, 255, 0.85); /* 頂部高光（鏡面反射感） */
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 浮起來的陰影 */
+
+  /* 背景光斑的三個顏色（橘紅／靛藍／天藍） */
+  --blob-1: rgba(224, 83, 47, 0.16);
+  --blob-2: rgba(99, 102, 241, 0.14);
+  --blob-3: rgba(56, 189, 248, 0.14);
 }
 
+/* ---------- 暗色主題：同一組變數換成深色值 ---------- */
+.dark {
+  --bg: #0a0a0f;
+  --fg: #f5f5f7;
+  --muted: #9b9ba1;
+  --line: rgba(255, 255, 255, 0.12);
+  --accent: #ff6a3d;                   /* 暗底上朱紅調亮，維持對比 */
+
+  --glass-bg: rgba(28, 28, 34, 0.5);   /* 暗色玻璃：半透明深灰 */
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-highlight: rgba(255, 255, 255, 0.18); /* 暗色下高光收斂 */
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+
+  --blob-1: rgba(224, 83, 47, 0.22);   /* 暗底上光斑稍微加濃 */
+  --blob-2: rgba(99, 102, 241, 0.2);
+  --blob-3: rgba(14, 165, 233, 0.16);
+}
+
+/* 把上面的 CSS 變數註冊成 Tailwind 的 class 名稱：
+   例如 bg-paper、text-ink、border-line、text-accent */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-paper: var(--bg);
+  --color-ink: var(--fg);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-inter); /* 玻璃風改用無襯線標題（貼近 SF Pro 氣質） */
+  --font-tc: var(--font-noto-serif-tc); /* 中文襯線字（印章、中文點綴用） */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ============================================================
+   自訂工具類：glass（霧面玻璃面板）
+   用法：<div className="glass rounded-3xl p-6">
+   ============================================================ */
+@utility glass {
+  background: var(--glass-bg);
+  /* backdrop-filter 是玻璃感的關鍵：模糊「後面」的內容並提高彩度 */
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--glass-border);
+  /* 兩層陰影：inset 是玻璃頂部的高光線，外層是浮起的影子 */
+  box-shadow:
+    inset 0 1px 0 var(--glass-highlight),
+    var(--glass-shadow);
+}
+
+/* ============================================================
+   自訂工具類：glass-tint（帶品牌色的玻璃，用在主要按鈕、印章）
+   ============================================================ */
+@utility glass-tint {
+  background: color-mix(in srgb, var(--accent) 85%, transparent);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+  color: #fff;
+}
+
+/* 點擊頁內錨點時平滑捲動 */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased; /* 讓字體渲染更細緻 */
+}
+
+/* ---------- 背景光暈場景 ----------
+   用 body::before 鋪一層固定的彩色光斑（radial-gradient），
+   z-index: -1 墊在所有內容後面，玻璃面板模糊的就是這一層。
+   inset 取負值是讓光斑略大於視窗，邊緣不會露出截斷。 */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -20%;
+  z-index: -1;
+  pointer-events: none; /* 純裝飾，不擋滑鼠事件 */
+  background:
+    radial-gradient(40% 35% at 18% 22%, var(--blob-1), transparent 70%),
+    radial-gradient(35% 35% at 82% 18%, var(--blob-2), transparent 70%),
+    radial-gradient(45% 40% at 60% 88%, var(--blob-3), transparent 70%),
+    var(--bg);
+}
+
+/* 反白選取文字時的顏色：品牌色底、白字 */
+::selection {
+  background: var(--accent);
+  color: #fff;
 }

@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# xuanchenhu — Personal Site
 
-## Getting Started
+Next.js 16 + Tailwind CSS v4 重建的個人網站（取代原本的純 HTML 版本）。
 
-First, run the development server:
+## 開發
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm run dev      # http://localhost:3000
+npm run build    # 靜態輸出到 out/
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 結構
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `lib/site.ts` — 全站設定（名字、Email、社群連結、GA ID、網域）。**改個人資訊只需改這裡。**
+- `app/layout.tsx` — 共用 layout（header/footer/字體/SEO meta/GA/主題初始化）
+- `app/*/page.tsx` — 各頁面內容
+- `components/` — Header、Footer、ThemeToggle、Seal（朱紅印章）
+- `app/globals.css` — 設計 token（色彩、字體變數，含暗色模式）
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 部署
 
-## Learn More
+`next.config.ts` 設定為靜態輸出（`output: "export"`），`npm run build` 後把 `out/` 部署到任何靜態主機即可。
 
-To learn more about Next.js, take a look at the following resources:
+- **GitHub Pages（專案子路徑）**：取消 `next.config.ts` 裡 `basePath` 的註解
+- **Vercel**：可移除 `output: "export"` 與 `images.unoptimized` 啟用圖片自動最佳化
+- 部署後記得把 `lib/site.ts` 的 `url` 換成實際網域（影響 OG 與 sitemap）
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 待辦
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [ ] Portfolio 頁補上可公開的 case study（結構已預留在 `app/portfolio/page.tsx` 註解）
+- [ ] Photography 換上更多照片（放進 `public/photos/`，並更新 `app/photography/page.tsx` 的清單）
