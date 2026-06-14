@@ -7,10 +7,11 @@ export const site = {
   name: "Xuan-Chen Hu",          // 英文全名（頁尾版權、SEO 用）
   shortName: "XUAN CHEN HU",     // 左上角的字標（wordmark）
   chineseName: "胡軒塵",          // 中文名（印章元件用）
-  role: "Designer & Consultant", // 職稱
-  title: "Xuan-Chen Hu — Designer & Consultant", // 瀏覽器分頁標題、分享預覽標題
+  role: "Consultant",            // 名片主職稱
+  roleSub: ["Business Strategy", "Customer Experience"], // 名片副標（兩行）：ToB＋ToC 雙軸
+  title: "Xuan-Chen Hu — Consultant", // 瀏覽器分頁標題、分享預覽標題
   description:
-    "Designer and consultant in Taipei, working at the crossroads of humanity and technology — product design, customer experience, and strategy.",
+    "Consultant in Taipei working across business strategy and customer experience — bridging ToB commercial strategy and ToC user research, rooted in social science.",
   // TODO: 部署後換成實際網域（影響社群分享預覽的連結與 sitemap）
   url: "https://xuanchenhu.com",
   email: "abelhu.tw@gmail.com",

@@ -110,6 +110,11 @@ export function FloatingCard() {
               </h1>
               <p className="text-sm text-muted">{site.name}</p>
               <p className="mt-1 text-base font-medium">{site.role}</p>
+              <div className="mt-1 text-xs leading-relaxed text-muted">
+                {site.roleSub.map((line) => (
+                  <p key={line}>{line}</p>
+                ))}
+              </div>
 
               {/* 光澤反射：白色高光跟著游標滑動（只蓋名片左欄） */}
               <div

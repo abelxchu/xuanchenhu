@@ -10,22 +10,31 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Product design, customer experience, and consulting — and the disciplines behind the work. Selected portfolio on request.",
+    "Business strategy, project management, product, UX, and customer experience — the areas behind my consulting work. Selected portfolio on request.",
 };
 
-// 三個業務領域卡片的內容，要改文案就改這裡
+// 能力領域：五張卡，前 3 張一排、後 2 張一排（後排較寬、填滿邊界）。
+// 順序＝使用者指定；要改文案就改這裡。
 const practices = [
   {
+    title: "Business Strategy",
+    body: "Growth strategy, market research, and data analysis — turning insight into actionable business direction.",
+  },
+  {
+    title: "Project Management",
+    body: "Leading cross-functional programs — aligning product, marketing, and partners toward delivery.",
+  },
+  {
     title: "Product & UX Design",
-    body: "From research and flows to high-fidelity UI and prototypes — designing products that respect both the user and the business.",
+    body: "Research-driven flows, wireframes, and prototypes — designing products that respect both the user and the business.",
   },
   {
     title: "Customer Experience",
-    body: "Mapping and improving the journey end to end, so the experience holds together across every touchpoint, not just the screen.",
+    body: "Mapping the journey end to end, so the experience holds together across every touchpoint, not just the screen.",
   },
   {
     title: "Consulting",
-    body: "Helping teams frame the right problem before solving it — synthesizing insight across disciplines into clear, actionable direction.",
+    body: "The through-line across both sides — reading people and business, asking why, and turning insight into clear decisions.",
   },
 ];
 
@@ -47,6 +56,10 @@ const fields: {
     title: "Political Science",
     href: "https://app.heptabase.com/w/31dbe0d92274d76a14f3ffa5c466ae2352f86abcd03eeb8035e5aaefba8ef6c3",
   },
+  {
+    title: "Artificial Intelligence",
+    href: "https://app.heptabase.com/p/whiteboard/a22b1121-9a34-4b1a-9800-468ca2b885dc",
+  },
   { title: "User Interface" },  // 還沒有公開白板 → 顯示 In progress
   { title: "Programming" },
 ];
@@ -58,18 +71,46 @@ export default function PortfolioPage() {
         Work
       </h1>
 
-      {/* ---------- 開場說明：作品多為保密案，需來信索取 ---------- */}
+      {/* ---------- 開場：職涯歷程敘事（產品 → 人 → 商業） ---------- */}
       <section className="space-y-5 text-base leading-relaxed sm:text-lg">
         <p>
-          I work across product design, customer experience, and consulting.
-          Much of my client work is confidential, so the full portfolio is
-          shared in person — reach out and I&apos;ll walk you through it.
+          My professional journey has taken me across different domains of
+          products, people, and business.
+        </p>
+        <p>
+          I began in the consumer electronics industry, where I worked closely
+          with customers and gained a deep appreciation for customer experience
+          and product design. Understanding user needs, behaviors, and
+          expectations taught me how products create meaningful value in
+          people&apos;s lives.
+        </p>
+        <p>
+          Later, I moved into SaaS commerce, where I expanded my perspective
+          from users to businesses. There, I developed experience in business
+          strategy, project management, and commercial operations, learning how
+          organizations make decisions, scale growth, and create value at a
+          broader level.
+        </p>
+        <p>
+          The areas below reflect the domains that have shaped my work and
+          thinking.
         </p>
       </section>
 
-      {/* ---------- 工作領域：三張玻璃卡片 ---------- */}
+      {/* ---------- 能力領域：第一排三張 ---------- */}
       <section className="mt-12 grid gap-4 sm:grid-cols-3">
-        {practices.map((p) => (
+        {practices.slice(0, 3).map((p) => (
+          <div key={p.title} className="glass rounded-3xl p-6">
+            <h2 className="mb-2 text-lg font-medium tracking-tight">
+              {p.title}
+            </h2>
+            <p className="text-sm leading-relaxed text-muted">{p.body}</p>
+          </div>
+        ))}
+      </section>
+      {/* ---------- 能力領域：第二排兩張（較寬、填滿邊界） ---------- */}
+      <section className="mt-4 grid gap-4 sm:grid-cols-2">
+        {practices.slice(3).map((p) => (
           <div key={p.title} className="glass rounded-3xl p-6">
             <h2 className="mb-2 text-lg font-medium tracking-tight">
               {p.title}
@@ -85,9 +126,8 @@ export default function PortfolioPage() {
           Field of Study
         </h2>
         <p className="mb-8 max-w-xl text-base leading-relaxed text-muted">
-          The disciplines behind the work — a living knowledge system built in
-          Heptabase. Each field opens a public whiteboard of my notes, a work in
-          progress by design.
+          These are the disciplines I study to connect different perspectives.
+          Each field opens a public whiteboard of my notes.
         </p>
 
         {/* 卡片網格：手機一欄、平板以上兩欄 */}
@@ -132,15 +172,20 @@ export default function PortfolioPage() {
         </ul>
       </section>
 
-      {/* ---------- 最後：Request the Portfolio CTA ---------- */}
-      <section className="mt-16 flex flex-wrap items-center gap-4 border-t border-line pt-12">
-        <a
-          href={`mailto:${site.email}?subject=Portfolio%20request`}
-          className="glass-tint rounded-full px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85"
-        >
-          Request the portfolio
-        </a>
-        <span className="text-sm text-muted">{site.email}</span>
+      {/* ---------- 最後：作品保密說明 ＋ Request the Portfolio CTA ---------- */}
+      <section className="mt-16 border-t border-line pt-12">
+        <p className="mb-5 text-base text-muted">
+          Contact me to request the full portfolio.
+        </p>
+        <div className="flex flex-wrap items-center gap-4">
+          <a
+            href={`mailto:${site.email}?subject=Portfolio%20request`}
+            className="glass-tint rounded-full px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85"
+          >
+            Request the portfolio
+          </a>
+          <span className="text-sm text-muted">{site.email}</span>
+        </div>
       </section>
 
       {/*

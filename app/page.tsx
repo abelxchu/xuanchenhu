@@ -14,8 +14,9 @@ export default function Home() {
         {/* 名片下方的一句陳述：英文為主、中文點綴 */}
         <div className="max-w-md space-y-3">
           <p className="text-lg leading-relaxed text-ink">
-            A relentless sense of urgency drives me to grow as a generalist —
-            standing at the crossroads of humanity and technology.
+            Exploring the intersection of people, technology, and business —
+            turning insights into products, strategies, and meaningful
+            experiences.
           </p>
           <p className="font-tc text-sm leading-loose tracking-wide text-muted">
             站在人文與科技的交會口，建構一個更加人性化的世界。

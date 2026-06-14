@@ -61,24 +61,33 @@ export default function AboutPage() {
 
       {/* ---------- 自我介紹（直接放在光暈背景上，不加玻璃，保持輕盈） ---------- */}
       <section className="space-y-5 text-base leading-relaxed sm:text-lg">
+        <p>I&apos;m Abel.</p>
         <p>
-          I&apos;m Abel — a designer and consultant based in {site.location},
-          working across product design, customer experience, and strategy. My
-          work is about delivering experiences that hold up across the whole
-          customer journey, for people in very different contexts around the
-          world.
+          My academic background is in political science, which taught me to
+          think about people, systems, and the incentives that shape decisions.
+          That perspective continues to influence how I approach problems today.
         </p>
         <p>
-          My path here wasn&apos;t linear. I studied political science, then
-          psychology and user experience. That mix taught me to read systems
-          and people before pixels — and it&apos;s why I gravitate toward
-          problems where human understanding matters as much as technology. I
-          believe meaningful solutions emerge at the confluence of the two, and
-          most often at the intersection of disciplines.
+          Throughout my career, I have worked across customer experience,
+          product, and business strategy. These experiences have reinforced my
+          belief that meaningful solutions rarely emerge from a single
+          discipline. More often, they come from connecting ideas across
+          different perspectives and understanding the broader context behind a
+          problem.
+        </p>
+        <p>
+          I am naturally curious and tend to ask &ldquo;why&rdquo; more than
+          most. First-principles thinking has become an important part of how I
+          learn and solve problems — breaking complexity down to its
+          fundamentals before building back up from there.
+        </p>
+        <p>
+          Over time, this mindset has led me to explore a wide range of fields
+          and continuously expand the way I understand the world.
         </p>
         {/* 中文點綴句 */}
         <p className="font-tc text-sm leading-loose tracking-wide text-muted">
-          瘋狂的急迫感推動我前進，持續探索成為跨領域通才。
+          站在人文與科技的交會口，建構一個更加人性化的世界。
         </p>
       </section>
 
