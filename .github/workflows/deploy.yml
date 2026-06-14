@@ -1,0 +1,45 @@
+# 每次 push 到 main → 自動 next build（產生靜態 out/）→ 部署到 GitHub Pages
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # 也允許在 GitHub 網頁手動觸發
+
+# 給 workflow 部署 Pages 所需的權限
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同時間只跑一個部署，不取消進行中的
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # 避免 GitHub Pages 用 Jekyll 處理（會忽略 _next 開頭的資料夾）
+      - run: touch out/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

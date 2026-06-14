@@ -30,3 +30,8 @@ export const nav = [
   { label: "Work", href: "/portfolio" },
   { label: "Photography", href: "/photography" },
 ] as const;
+
+// 部署在 GitHub Pages 子路徑時，public 圖片要手動加這個前綴
+// （next/image 的 unoptimized 模式不會自動補 basePath；next/link 則會自動補）。
+export const basePath =
+  process.env.NODE_ENV === "production" ? "/xuanchenhu" : "";

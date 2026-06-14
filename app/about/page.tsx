@@ -4,7 +4,7 @@
 // ============================================================
 import type { Metadata } from "next";
 import Image from "next/image";
-import { site } from "@/lib/site";
+import { site, basePath } from "@/lib/site";
 
 // 這一頁專屬的 SEO 標題與描述（標題會變成「About — Xuan-Chen Hu」）
 export const metadata: Metadata = {
@@ -49,7 +49,7 @@ export default function AboutPage() {
           About
         </h1>
         <Image
-          src="/images/headshot.png"
+          src={`${basePath}/images/headshot.png`}
           alt={`Portrait of ${site.name}`}
           width={96}
           height={96}

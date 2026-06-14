@@ -10,7 +10,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { site, nav } from "@/lib/site";
+import { site, nav, basePath } from "@/lib/site";
 
 // 傾斜的最大角度（度）。數字越大越誇張，12 度是舒服的範圍。
 const MAX_TILT = 12;
@@ -98,7 +98,7 @@ export function FloatingCard() {
             {/* ---------- 左欄：名片 ---------- */}
             <div className="relative flex w-[300px] shrink-0 flex-col items-center justify-center gap-3">
               <Image
-                src="/images/headshot.png"
+                src={`${basePath}/images/headshot.png`}
                 alt={`Portrait of ${site.name}`}
                 width={120}
                 height={120}

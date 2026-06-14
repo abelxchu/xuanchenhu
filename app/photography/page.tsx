@@ -5,6 +5,7 @@
 // ============================================================
 import type { Metadata } from "next";
 import Image from "next/image";
+import { basePath } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Photography",
@@ -14,9 +15,9 @@ export const metadata: Metadata = {
 // 照片清單（alt 是給螢幕報讀器與搜尋引擎的文字描述，
 // 之後可以換成每張照片各自的描述，例如拍攝地點）
 const photos = [
-  { src: "/photos/photo1.jpg", alt: "Photograph by Xuan-Chen Hu" },
-  { src: "/photos/photo2.jpg", alt: "Photograph by Xuan-Chen Hu" },
-  { src: "/photos/photo3.jpg", alt: "Photograph by Xuan-Chen Hu" },
+  { src: `${basePath}/photos/photo1.jpg`, alt: "Photograph by Xuan-Chen Hu" },
+  { src: `${basePath}/photos/photo2.jpg`, alt: "Photograph by Xuan-Chen Hu" },
+  { src: `${basePath}/photos/photo3.jpg`, alt: "Photograph by Xuan-Chen Hu" },
 ];
 
 export default function PhotographyPage() {
