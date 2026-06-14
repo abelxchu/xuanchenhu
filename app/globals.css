@@ -127,3 +127,38 @@ body::before {
   background: var(--accent);
   color: #fff;
 }
+
+/* ============================================================
+   首頁浮動名片的動畫（floating-card.tsx 用到）
+   ============================================================ */
+
+/* 進場：淡入 ＋ 從下方輕輕上浮到定位（只播一次） */
+@keyframes card-entrance {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 閒置漂浮：沒人互動時緩慢上下浮動＋微微擺動，像漂在空間裡 */
+@keyframes card-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-0.6deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.6deg);
+  }
+}
+
+/* 無障礙：使用者若在系統開啟「減少動態」，關閉漂浮與進場動畫 */
+@media (prefers-reduced-motion: reduce) {
+  [data-card-entrance],
+  [data-card-float] {
+    animation: none !important;
+  }
+}
