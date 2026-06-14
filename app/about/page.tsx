@@ -13,21 +13,32 @@ export const metadata: Metadata = {
     "Designer and consultant in Taipei. Political science, psychology, and UX — synthesized into product and customer experience work.",
 };
 
-// 工具清單：要加減工具就改這個陣列。
+// 工具清單：自訂排列順序；group 決定底色的灰階深淺（不用色相）。
+//   think（思考／知識／AI）最實 → design（設計）中 → build（開發）最淺。
 // 刻意只放文字、不抓各家網站的 favicon（外部圖示常失效又拖慢載入）。
-const tools = [
-  { label: "Heptabase", href: "https://heptabase.com/" },
-  { label: "Notion", href: "https://www.notion.so/" },
-  { label: "Figma", href: "https://www.figma.com/" },
-  { label: "ProtoPie", href: "https://www.protopie.io/" },
-  { label: "Adobe Creative Cloud", href: "https://www.adobe.com/creativecloud.html" },
-  { label: "Perplexity", href: "https://www.perplexity.ai/" },
-  { label: "ChatGPT", href: "https://chatgpt.com/" },
-  { label: "Claude", href: "https://claude.ai/" },
-  { label: "Cursor", href: "https://www.cursor.com/" },
-  { label: "VS Code", href: "https://code.visualstudio.com/" },
-  { label: "GitHub", href: "https://github.com/" },
+const tools: {
+  label: string;
+  href: string;
+  group: "think" | "design" | "build";
+}[] = [
+  { label: "VS Code", href: "https://code.visualstudio.com/", group: "build" },
+  { label: "Notion", href: "https://www.notion.so/", group: "think" },
+  { label: "Adobe Creative Cloud", href: "https://www.adobe.com/creativecloud.html", group: "design" },
+  { label: "Figma", href: "https://www.figma.com/", group: "design" },
+  { label: "ChatGPT", href: "https://chatgpt.com/", group: "think" },
+  { label: "Perplexity", href: "https://www.perplexity.ai/", group: "think" },
+  { label: "Heptabase", href: "https://heptabase.com/", group: "think" },
+  { label: "Cursor", href: "https://www.cursor.com/", group: "build" },
+  { label: "Claude", href: "https://claude.ai/", group: "think" },
+  { label: "GitHub", href: "https://github.com/", group: "build" },
 ];
+
+// 三個灰階深淺等級，對應工具性質——靠底色深淺分類，不引入色相
+const groupStyle: Record<"think" | "design" | "build", string> = {
+  think: "bg-[var(--chip-think)]", // 最實
+  design: "bg-[var(--chip-design)]", // 中
+  build: "border border-line", // 最淺（僅描邊）
+};
 
 export default function AboutPage() {
   return (
@@ -77,7 +88,8 @@ export default function AboutPage() {
           Tools I think with
         </h2>
         <p className="mb-6 text-sm text-muted">
-          Software I use to accelerate thinking and carry out the work.
+          Software and tools I use to accelerate thinking, fulfil my work and
+          vision.
         </p>
         <ul className="flex flex-wrap gap-2">
           {tools.map((tool) => (
@@ -86,7 +98,7 @@ export default function AboutPage() {
                 href={tool.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass inline-block rounded-full px-4 py-1.5 text-sm transition-colors hover:text-accent"
+                className={`inline-block rounded-full px-4 py-1.5 text-sm transition-colors hover:text-accent ${groupStyle[tool.group]}`}
               >
                 {tool.label}
               </a>

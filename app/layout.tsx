@@ -4,7 +4,7 @@
 // ============================================================
 
 import type { Metadata } from "next";
-import { Inter, Noto_Serif_TC } from "next/font/google";
+import { Poppins, Noto_Sans_TC } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -12,13 +12,16 @@ import { site } from "@/lib/site";
 import "./globals.css";
 
 // ---------- 字體：由 Next.js 自動下載並託管，不再連 Google Fonts ----------
-// 液態玻璃風格全站使用無襯線（Inter，氣質貼近 Apple 的 SF Pro）；
-// Noto Serif TC 保留給中文點綴與印章。
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const notoSerifTC = Noto_Serif_TC({
-  weight: ["400", "600"],
+// 英文用 Poppins（幾何無襯線）；中文用 Noto Sans TC（無襯線）。
+const poppins = Poppins({
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
-  variable: "--font-noto-serif-tc",
+  variable: "--font-poppins",
+});
+const notoSansTC = Noto_Sans_TC({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto-sans-tc",
   preload: false, // 中文字體檔很大，不預載，用到的字才下載
 });
 
@@ -58,7 +61,7 @@ export default function RootLayout({
     // 這行告訴 React 不要對這個差異報錯
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${notoSerifTC.variable} flex min-h-svh flex-col font-sans`}
+        className={`${poppins.variable} ${notoSansTC.variable} flex min-h-svh flex-col font-sans`}
         // min-h-svh + flex-col：讓頁面至少滿版高，footer 自然貼底
       >
         {/* 主題初始化腳本，必須放在最前面、比畫面先執行 */}

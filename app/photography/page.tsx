@@ -28,12 +28,12 @@ export default function PhotographyPage() {
       <p className="mb-12 text-base leading-relaxed text-muted sm:text-lg">
         Moments collected along the way. More on{" "}
         <a
-          href="https://www.instagram.com/togeneralist"
+          href="https://www.instagram.com/abelxchu/"
           target="_blank"
           rel="noopener noreferrer"
           className="underline decoration-line underline-offset-4 transition-colors hover:text-accent hover:decoration-accent"
         >
-          Instagram @togeneralist
+          Instagram @abelxchu
         </a>
         .
       </p>

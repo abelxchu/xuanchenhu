@@ -127,14 +127,14 @@ export function FloatingCard() {
             {expanded && (
               <nav
                 aria-label="Sections"
-                className="flex flex-1 flex-col border-l border-line p-3 [animation:panel-in_0.4s_ease-out_both]"
+                className="glass-sunken flex flex-1 flex-col border-l border-line p-3 [animation:panel-in_0.4s_ease-out_both]"
               >
-                <ul className="flex flex-1 flex-col divide-y divide-line">
+                <ul className="flex flex-1 flex-col gap-1.5">
                   {nav.map((item, i) => (
                     <li key={item.href} className="flex-1">
                       <Link
                         href={item.href}
-                        className="group flex h-full items-center gap-3 rounded-2xl px-4 transition-colors hover:bg-paper/50"
+                        className="group flex h-full items-center gap-3 rounded-2xl px-4 transition-colors hover:bg-[var(--glass-raised-bg)]"
                       >
                         <span className="text-xs text-muted">
                           {String(i + 1).padStart(2, "0")}

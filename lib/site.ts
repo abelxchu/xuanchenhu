@@ -17,16 +17,16 @@ export const site = {
   location: "Taipei, Taiwan",
   gaId: "G-HGR5WFET0D",          // Google Analytics 追蹤 ID
   socials: [
-    { label: "LinkedIn", href: "https://www.linkedin.com/in/xuanchenhu" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/xuanchenhu/" },
     { label: "Medium", href: "https://medium.com/@xuanchenhu" },
-    { label: "Instagram", href: "https://www.instagram.com/togeneralist" },
+    { label: "Threads", href: "https://www.threads.com/@abelxchu" },
   ],
 } as const;
 
 // 導航選單的項目與順序。新增頁面時在這裡加一筆，
 // header 選單、首頁索引列表、sitemap 都會自動帶到。
 export const nav = [
-  { label: "Work", href: "/portfolio" },
   { label: "About", href: "/about" },
+  { label: "Work", href: "/portfolio" },
   { label: "Photography", href: "/photography" },
 ] as const;

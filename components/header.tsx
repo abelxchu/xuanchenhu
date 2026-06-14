@@ -53,7 +53,7 @@ export function Header() {
                 href={item.href}
                 className={`rounded-full px-4 py-2 text-sm transition-colors ${
                   isActive(item.href)
-                    ? "glass text-accent" // 目前頁面：玻璃膠囊＋品牌色
+                    ? "glass-raised text-accent" // 目前頁面：玻璃膠囊＋品牌色
                     : "text-muted hover:text-ink"
                 }`}
               >
@@ -102,7 +102,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={`rounded-2xl px-4 py-3 text-2xl font-medium tracking-tight transition-colors ${
-                  isActive(item.href) ? "glass text-accent" : "hover:text-accent"
+                  isActive(item.href) ? "glass-raised text-accent" : "hover:text-accent"
                 }`}
               >
                 {item.label}
