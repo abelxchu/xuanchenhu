@@ -64,9 +64,10 @@ export default function RootLayout({
         {/* 主題初始化腳本，必須放在最前面、比畫面先執行 */}
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <Header />
-        {/* flex-1 撐開剩餘高度把 footer 推到底；
+        {/* flex flex-col 讓頁面內容可用 flex-1 填滿、垂直置中（首頁名片用到）；
+            flex-1 撐開剩餘高度把 footer 推到底；
             pt-24 是留給懸浮玻璃導航列的空間（它是 fixed，不佔版面） */}
-        <main className="flex-1 pt-24">{children}</main>
+        <main className="flex flex-1 flex-col pt-24">{children}</main>
         <Footer />
         {/* ---------- Google Analytics（afterInteractive = 頁面互動後才載入，不拖慢首屏） ---------- */}
         <Script
