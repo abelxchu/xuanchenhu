@@ -63,27 +63,27 @@ export default function AboutPage() {
       <section className="space-y-5 text-base leading-relaxed sm:text-lg">
         <p>I&apos;m Abel.</p>
         <p>
-          My academic background is in political science, which taught me to
-          think about people, systems, and the incentives that shape decisions.
-          That perspective continues to influence how I approach problems today.
+          I studied political science, which sparked my interest in how people,
+          systems, and incentives shape decisions. That perspective continues to
+          influence how I think and work today.
         </p>
         <p>
-          Throughout my career, I have worked across customer experience,
-          product, and business strategy. These experiences have reinforced my
-          belief that meaningful solutions rarely emerge from a single
-          discipline. More often, they come from connecting ideas across
-          different perspectives and understanding the broader context behind a
-          problem.
+          My career has taken me across customer experience, product, and
+          business strategy. Together, these experiences have reinforced my
+          belief that meaningful solutions often emerge from connecting human
+          needs, technology, and ideas across disciplines.
         </p>
         <p>
-          I am naturally curious and tend to ask &ldquo;why&rdquo; more than
-          most. First-principles thinking has become an important part of how I
-          learn and solve problems — breaking complexity down to its
-          fundamentals before building back up from there.
+          I&apos;m driven by curiosity and a habit of asking &ldquo;why.&rdquo;
+          First-principles thinking helps me break complex problems into their
+          fundamental parts, challenge assumptions, and build understanding from
+          the ground up.
         </p>
         <p>
-          Over time, this mindset has led me to explore a wide range of fields
-          and continuously expand the way I understand the world.
+          This mindset has led me to explore new fields and continuously broaden
+          how I understand the world&mdash;connecting insights across technology,
+          business, and human behavior to make sense of complex problems and
+          uncover new opportunities.
         </p>
         {/* 中文點綴句 */}
         <p className="font-tc text-sm leading-loose tracking-wide text-muted">

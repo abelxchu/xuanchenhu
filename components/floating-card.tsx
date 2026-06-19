@@ -73,7 +73,8 @@ export function FloatingCard() {
           onMouseEnter={handleEnter}
           onMouseLeave={handleLeave}
         >
-          {/* 第 4 層：連體卡 — 展開時寬度從 300 → 580，左名片右索引 */}
+          {/* 第 4 層：連體卡。手機直排（名片在上、索引在下，寬固定 300 不超出畫面）；
+              桌面 sm+ 橫排，展開時往右長到 580。 */}
           <div
             ref={ref}
             onClick={toggleExpand}
@@ -87,16 +88,19 @@ export function FloatingCard() {
                 toggleExpand();
               }
             }}
-            className="glass relative flex h-[420px] cursor-pointer overflow-hidden rounded-[28px]"
+            className={`glass relative flex w-[300px] cursor-pointer flex-col overflow-hidden rounded-[28px] sm:flex-row ${
+              expanded
+                ? "h-auto sm:h-[420px] sm:w-[580px]"
+                : "h-[420px] sm:w-[300px]"
+            }`}
             style={{
-              width: expanded ? "580px" : "300px",
               transform: `rotateX(${tilt.rx}deg) rotateY(${tilt.ry}deg)`,
               transition:
                 "width 0.4s cubic-bezier(0.2,0.9,0.3,1.05), transform 0.15s ease-out",
             }}
           >
             {/* ---------- 左欄：名片 ---------- */}
-            <div className="relative flex w-[300px] shrink-0 flex-col items-center justify-center gap-3">
+            <div className="relative flex h-[420px] w-[300px] shrink-0 flex-col items-center justify-center gap-3">
               <Image
                 src={`${basePath}/images/headshot.png`}
                 alt={`Portrait of ${site.name}`}
@@ -132,14 +136,14 @@ export function FloatingCard() {
             {expanded && (
               <nav
                 aria-label="Sections"
-                className="glass-sunken flex flex-1 flex-col border-l border-line p-3 [animation:panel-in_0.4s_ease-out_both]"
+                className="glass-sunken flex flex-1 flex-col border-t border-line p-3 sm:border-l sm:border-t-0 [animation:panel-in_0.4s_ease-out_both]"
               >
                 <ul className="flex flex-1 flex-col gap-1.5">
                   {nav.map((item, i) => (
                     <li key={item.href} className="flex-1">
                       <Link
                         href={item.href}
-                        className="group flex h-full items-center gap-3 rounded-2xl px-4 transition-colors hover:bg-[var(--glass-raised-bg)]"
+                        className="group flex h-full min-h-[56px] items-center gap-3 rounded-2xl px-4 transition-colors hover:bg-[var(--glass-raised-bg)]"
                       >
                         <span className="text-xs text-muted">
                           {String(i + 1).padStart(2, "0")}

@@ -1,11 +1,11 @@
 // ============================================================
-// Photography 頁：照片直列展示，每張裝在玻璃相框裡。
+// Photography 頁：卡堆攤開的照片牆（互動在 components/photo-stack.tsx）。
 // 新增照片步驟：1) 把檔案放進 public/photos/
-//              2) 在下面的 photos 陣列加一筆
+//              2) 在下面的 photos 陣列加一筆（少量精選，3–8 張最合適）
 // ============================================================
 import type { Metadata } from "next";
-import Image from "next/image";
 import { basePath } from "@/lib/site";
+import { PhotoCoverflow } from "@/components/photo-coverflow";
 
 export const metadata: Metadata = {
   title: "Photography",
@@ -39,22 +39,8 @@ export default function PhotographyPage() {
         .
       </p>
 
-      {/* 照片由上往下排列；外層 glass + p-2 做出「玻璃相框」的細邊 */}
-      <div className="flex flex-col gap-10">
-        {photos.map((photo, i) => (
-          <figure key={photo.src} className="glass rounded-3xl p-2">
-            <Image
-              src={photo.src}
-              alt={photo.alt}
-              width={1800}  // 原始檔的尺寸，瀏覽器據此預留空間、避免載入時版面跳動
-              height={1197}
-              sizes="(min-width: 768px) 768px, 100vw" // 告訴瀏覽器實際顯示寬度，下載剛好大小的圖
-              className="w-full rounded-2xl bg-line"
-              priority={i === 0} // 只有第一張優先載入（它在首屏）
-            />
-          </figure>
-        ))}
-      </div>
+      {/* Coverflow：中央大圖、兩側傾斜，點側圖／箭頭／圓點切換 */}
+      <PhotoCoverflow photos={photos} />
     </div>
   );
 }
