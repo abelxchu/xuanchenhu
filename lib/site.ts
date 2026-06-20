@@ -6,6 +6,7 @@
 export const site = {
   name: "Xuan-Chen Hu",          // 英文全名（頁尾版權、SEO 用）
   shortName: "XUAN CHEN HU",     // 左上角的字標（wordmark）
+  motto: "keep exploring",       // 開場動畫字標下的座右銘（小寫、簡短）
   chineseName: "胡軒塵",          // 中文名（印章元件用）
   role: "Consultant",            // 名片主職稱
   roleSub: ["Business Strategy", "Customer Experience"], // 名片副標（兩行）：ToB＋ToC 雙軸

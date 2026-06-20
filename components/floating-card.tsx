@@ -7,7 +7,7 @@
 // ============================================================
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { site, nav, basePath } from "@/lib/site";
@@ -15,8 +15,25 @@ import { site, nav, basePath } from "@/lib/site";
 // 傾斜的最大角度（度）。數字越大越誇張，12 度是舒服的範圍。
 const MAX_TILT = 12;
 
+// 模組層級旗標：是否已經演過一次進場。
+// 整頁 reload 會重建模組（重置為 false）＝伴隨開場幕的首次載入；
+// client 端切頁不會重置（維持 true）＝沒有開場幕的回首頁。
+let entrancePlayed = false;
+
 export function FloatingCard() {
   const ref = useRef<HTMLDivElement>(null);
+  // 首次載入：延遲 2s 等開場字樣飄散時才升起，與幕對拍。
+  // 之後從別頁切回：沒有幕，直接快速升起、不延遲，免得乾等一片空白。
+  const [firstLoad] = useState(() => !entrancePlayed);
+  useEffect(() => {
+    entrancePlayed = true;
+  }, []);
+  const entranceAnim = firstLoad
+    ? "[animation:card-entrance_1.3s_ease-out_2.5s_both]"
+    : "[animation:card-entrance_0.7s_ease-out_both]";
+  const floatAnim = firstLoad
+    ? "[animation:card-float_6s_ease-in-out_3.9s_infinite]"
+    : "[animation:card-float_6s_ease-in-out_0.9s_infinite]";
   const [tilt, setTilt] = useState({ rx: 0, ry: 0 });
   const [glare, setGlare] = useState({ x: 50, y: 50, o: 0 });
   const [hovered, setHovered] = useState(false);
@@ -53,15 +70,13 @@ export function FloatingCard() {
   }
 
   return (
-    // 第 1 層：進場動畫
-    <div
-      data-card-entrance
-      className="[animation:card-entrance_0.8s_ease-out_both]"
-    >
-      {/* 第 2 層：閒置漂浮（hover 或展開時暫停） */}
+    // 第 1 層：進場動畫。首次載入延遲 2s 與開場幕對拍，回首頁則快速升起（見上）。
+    <div data-card-entrance className={entranceAnim}>
+      {/* 第 2 層：閒置漂浮（hover 或展開時暫停）。延遲到進場升起結束才接手，
+          避免名片在升起途中就被拉著飄；延遲長短隨首次／回首頁而不同（見上）。 */}
       <div
         data-card-float
-        className="[animation:card-float_6s_ease-in-out_infinite]"
+        className={floatAnim}
         style={{
           animationPlayState: hovered || expanded ? "paused" : "running",
         }}

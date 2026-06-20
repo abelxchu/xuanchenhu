@@ -96,9 +96,10 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        {/* 克制版開場揭幕（純 CSS 自動淡出，約 1.4s） */}
+        {/* 克制版開場揭幕（純 CSS）：字標先聚集，座右銘錯開淡入，再一起向上飄散 */}
         <div className="intro-veil" aria-hidden>
-          <span>{site.shortName}</span>
+          <span className="intro-name">{site.shortName}</span>
+          <span className="intro-tagline">{site.motto}</span>
         </div>
         <AmbientBackground />
         <ScrollReveal />

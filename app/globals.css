@@ -174,22 +174,33 @@ body {
   inset: 0;
   z-index: 200;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.85rem;
   background: var(--bg);
   pointer-events: none;
-  animation: intro-veil-out 3.2s ease forwards;
+  /* 幕：穩住前段，後段用柔順緩動淡開（霧散感） */
+  animation: intro-veil-out 3.7s cubic-bezier(0.45, 0, 0.2, 1) forwards;
 }
-.intro-veil span {
+.intro-veil .intro-name {
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.3em;
   color: var(--fg);
-  animation: intro-word 3.2s ease-in-out forwards;
+  animation: intro-word 3.7s ease-in-out forwards;
+}
+/* 座右銘：比字標小、淡（靠 opacity 上限壓低），晚一點才淡入，最後與字標一起飄散 */
+.intro-veil .intro-tagline {
+  font-weight: 400;
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  color: var(--fg);
+  animation: intro-tagline 3.7s ease-in-out forwards;
 }
 @keyframes intro-veil-out {
   0%,
-  62% {
+  70% {
     opacity: 1;
   }
   100% {
@@ -197,20 +208,54 @@ body {
     visibility: hidden;
   }
 }
+/* 字樣：先模糊聚集→定住→再往上飄散溶解（模糊＋字距拉開＋上移淡出），
+   像被霧帶走，而非原地直接消失。 */
 @keyframes intro-word {
   0% {
     opacity: 0;
-    letter-spacing: 0.6em;
+    letter-spacing: 0.62em;
+    filter: blur(5px);
+    transform: translateY(6px);
   }
-  50% {
+  35% {
     opacity: 0.92;
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
+    filter: blur(0);
+    transform: translateY(0);
   }
-  62% {
+  70% {
     opacity: 0.92;
+    letter-spacing: 0.3em;
+    filter: blur(0);
+    transform: translateY(0);
   }
   100% {
     opacity: 0;
+    letter-spacing: 0.5em;
+    filter: blur(7px);
+    transform: translateY(-22px);
+  }
+}
+/* 座右銘：字標聚集後（34%）才「單純淡入」（不移位、不模糊、不變字距——
+   入場保持乾淨），多停留一會，再與字標同步（65%起）一起往上飄散溶解。
+   最高透明度壓在 0.5 維持次階層級。 */
+@keyframes intro-tagline {
+  0%,
+  34% {
+    opacity: 0;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  47%,
+  70% {
+    opacity: 0.5;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(5px);
+    transform: translateY(-18px);
   }
 }
 
@@ -248,15 +293,16 @@ body {
    首頁浮動名片的動畫（floating-card.tsx 用到）
    ============================================================ */
 
-/* 進場：淡入 ＋ 從下方輕輕上浮到定位（只播一次） */
+/* 進場：淡入 ＋ 從下方緩緩上浮、帶一點放大到定位（只播一次）。
+   由 floating-card 設 2s 延遲——等開場字樣開始飄散時才升起浮現。 */
 @keyframes card-entrance {
   from {
     opacity: 0;
-    transform: translateY(28px);
+    transform: translateY(44px) scale(0.96);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
