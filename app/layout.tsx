@@ -8,7 +8,7 @@ import { Poppins, Noto_Sans_TC } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { PointerGlow } from "@/components/pointer-glow";
+import { AmbientBackground } from "@/components/ambient-background";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { site } from "@/lib/site";
 import "./globals.css";
@@ -96,7 +96,11 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <PointerGlow />
+        {/* 克制版開場揭幕（純 CSS 自動淡出，約 1.4s） */}
+        <div className="intro-veil" aria-hidden>
+          <span>{site.shortName}</span>
+        </div>
+        <AmbientBackground />
         <ScrollReveal />
         <Header />
         {/* flex flex-col 讓頁面內容可用 flex-1 填滿、垂直置中（首頁名片用到）；

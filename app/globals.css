@@ -151,25 +151,64 @@ body {
   -webkit-font-smoothing: antialiased; /* 讓字體渲染更細緻 */
 }
 
-/* ---------- 背景光暈場景 ----------
-   用 body::before 鋪一層固定的彩色光斑（radial-gradient），
-   z-index: -1 墊在所有內容後面，玻璃面板模糊的就是這一層。
-   inset 取負值是讓光斑略大於視窗，邊緣不會露出截斷。 */
-body::before {
-  content: "";
+/* ---------- 背景雲霧 ----------
+   改由 AmbientBackground 元件用 canvas 畫流動雲霧（取代原本的靜態
+   body::before 光斑）。canvas 自己會填底色，但 body 仍保留底色作為
+   canvas 掛載前的 fallback。 */
+
+/* canvas 雲霧載入時的淡入 */
+@keyframes ambient-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ---------- 克制版開場：揭幕 ----------
+   一層底色幕、字標淡入後整片淡出（約 1.4s）。純 CSS、不靠 JS，
+   所以 no-JS 也會自動淡開、不會卡住內容。 */
+.intro-veil {
   position: fixed;
-  inset: -20%;
-  z-index: -1;
-  pointer-events: none; /* 純裝飾，不擋滑鼠事件 */
-  background:
-    radial-gradient(40% 35% at 18% 22%, var(--blob-1), transparent 70%),
-    radial-gradient(35% 35% at 82% 18%, var(--blob-2), transparent 70%),
-    radial-gradient(45% 40% at 60% 88%, var(--blob-3), transparent 70%),
-    var(--bg);
-  /* 光暈隨游標緩慢位移（變數由 PointerGlow 元件更新），多一層空間視差 */
-  transform: translate3d(var(--glow-x, 0px), var(--glow-y, 0px), 0);
-  transition: transform 0.5s ease-out;
-  will-change: transform;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  pointer-events: none;
+  animation: intro-veil-out 1.4s ease forwards;
+}
+.intro-veil span {
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.3em;
+  color: var(--fg);
+  animation: intro-word 1.4s ease forwards;
+}
+@keyframes intro-veil-out {
+  0%,
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes intro-word {
+  0% {
+    opacity: 0;
+    letter-spacing: 0.55em;
+  }
+  30% {
+    opacity: 0.85;
+    letter-spacing: 0.3em;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 /* 反白選取文字時的顏色：品牌色底、白字 */
@@ -251,5 +290,9 @@ body::before {
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+  /* 開場揭幕直接消失 */
+  .intro-veil {
+    display: none !important;
   }
 }
