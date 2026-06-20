@@ -1,17 +1,9 @@
 // ============================================================
-// Work 頁：合併了原本的 Field of Study。
-// 結構順序：開場說明 → 工作領域 → Field of Study（知識系統）
-//          → 最後 Request the Portfolio。
-// 之後有可公開的 case study，照檔案最下方的註解擴充。
+// Work 區段（單頁版）：職涯歷程 → 能力領域（五張卡 3+2）→ Field of Study。
+// 由原本的 app/portfolio/page.tsx 改寫——拿掉獨立頁 metadata；
+// 原本結尾的「Request the portfolio」CTA 移到 Contact 區段統一。
+// 區段 id="work" 供導覽列錨點捲動。
 // ============================================================
-import type { Metadata } from "next";
-import { site } from "@/lib/site";
-
-export const metadata: Metadata = {
-  title: "Work",
-  description:
-    "Business strategy, project management, product, UX, and customer experience — the areas behind my consulting work. Selected portfolio on request.",
-};
 
 // 能力領域：五張卡，前 3 張一排、後 2 張一排（後排較寬、填滿邊界）。
 // 順序＝使用者指定；要改文案就改這裡。
@@ -60,19 +52,22 @@ const fields: {
     title: "Artificial Intelligence",
     href: "https://app.heptabase.com/p/whiteboard/a22b1121-9a34-4b1a-9800-468ca2b885dc",
   },
-  { title: "User Interface" },  // 還沒有公開白板 → 顯示 In progress
+  { title: "User Interface" }, // 還沒有公開白板 → 顯示 In progress
   { title: "Programming" },
 ];
 
-export default function PortfolioPage() {
+export function WorkSection() {
   return (
-    <div className="mx-auto w-full max-w-3xl px-5 py-12 sm:py-16">
-      <h1 className="mb-12 text-4xl font-semibold tracking-tight sm:text-5xl">
+    <section
+      id="work"
+      className="mx-auto w-full max-w-3xl scroll-mt-28 px-5 py-24 sm:py-28"
+    >
+      <h2 className="reveal mb-12 text-4xl font-semibold tracking-tight sm:text-5xl">
         Work
-      </h1>
+      </h2>
 
       {/* ---------- 開場：職涯歷程敘事（產品 → 人 → 商業） ---------- */}
-      <section className="reveal space-y-5 text-base leading-relaxed sm:text-lg">
+      <div className="reveal space-y-5 text-base leading-relaxed sm:text-lg">
         <p>
           My professional journey has taken me across different domains of
           products, people, and business.
@@ -95,36 +90,32 @@ export default function PortfolioPage() {
           The areas below reflect the domains that have shaped my work and
           thinking.
         </p>
-      </section>
+      </div>
 
       {/* ---------- 能力領域：第一排三張 ---------- */}
-      <section className="reveal mt-12 grid gap-4 sm:grid-cols-3">
+      <div className="reveal mt-12 grid gap-4 sm:grid-cols-3">
         {practices.slice(0, 3).map((p) => (
           <div key={p.title} className="glass card-hover rounded-3xl p-6">
-            <h2 className="mb-2 text-lg font-medium tracking-tight">
-              {p.title}
-            </h2>
+            <h3 className="mb-2 text-lg font-medium tracking-tight">{p.title}</h3>
             <p className="text-sm leading-relaxed text-muted">{p.body}</p>
           </div>
         ))}
-      </section>
+      </div>
       {/* ---------- 能力領域：第二排兩張（較寬、填滿邊界） ---------- */}
-      <section className="reveal mt-4 grid gap-4 sm:grid-cols-2">
+      <div className="reveal mt-4 grid gap-4 sm:grid-cols-2">
         {practices.slice(3).map((p) => (
           <div key={p.title} className="glass card-hover rounded-3xl p-6">
-            <h2 className="mb-2 text-lg font-medium tracking-tight">
-              {p.title}
-            </h2>
+            <h3 className="mb-2 text-lg font-medium tracking-tight">{p.title}</h3>
             <p className="text-sm leading-relaxed text-muted">{p.body}</p>
           </div>
         ))}
-      </section>
+      </div>
 
       {/* ---------- Field of Study（知識系統），用上分隔線分段 ---------- */}
-      <section className="reveal mt-16 border-t border-line pt-12">
-        <h2 className="mb-3 text-2xl font-medium tracking-tight">
+      <div className="reveal mt-16 border-t border-line pt-12">
+        <h3 className="mb-3 text-2xl font-medium tracking-tight">
           Field of Study
-        </h2>
+        </h3>
         <p className="mb-8 max-w-xl text-base leading-relaxed text-muted">
           These are the disciplines I study to connect different perspectives.
           Each field opens a public whiteboard of my notes.
@@ -170,28 +161,7 @@ export default function PortfolioPage() {
             ),
           )}
         </ul>
-      </section>
-
-      {/* ---------- 最後：作品保密說明 ＋ Request the Portfolio CTA ---------- */}
-      <section className="reveal mt-16 border-t border-line pt-12">
-        <p className="mb-5 text-base text-muted">
-          Contact me to request the full portfolio.
-        </p>
-        <div className="flex flex-wrap items-center gap-4">
-          <a
-            href={`mailto:${site.email}?subject=Portfolio%20request`}
-            className="glass-tint rounded-full px-6 py-3 text-sm font-medium transition-opacity hover:opacity-85"
-          >
-            Request the portfolio
-          </a>
-          <span className="text-sm text-muted">{site.email}</span>
-        </div>
-      </section>
-
-      {/*
-        之後有可公開的 case study 時，建議加在「工作領域」與「Field of Study」之間，
-        每個案例的結構：問題 → 你的角色 → 過程 → 成果。
-      */}
-    </div>
+      </div>
+    </section>
   );
 }

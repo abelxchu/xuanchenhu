@@ -25,12 +25,12 @@ export const site = {
   ],
 } as const;
 
-// 導航選單的項目與順序。新增頁面時在這裡加一筆，
-// header 選單、首頁索引列表、sitemap 都會自動帶到。
+// 導航選單的項目與順序（單頁版＝頁內錨點）。
+// header 用這些連結做平滑捲動＋scrollspy；對應 app/page.tsx 的區段 id。
 export const nav = [
-  { label: "About", href: "/about" },
-  { label: "Work", href: "/portfolio" },
-  { label: "Photography", href: "/photography" },
+  { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
+  { label: "Contact", href: "#contact" },
 ] as const;
 
 // 部署在 GitHub Pages 子路徑時，public 圖片要手動加這個前綴

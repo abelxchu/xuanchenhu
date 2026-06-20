@@ -36,10 +36,6 @@
 
   --glass-sunken-bg: rgba(0, 0, 0, 0.035);          /* 凹陷：壓暗一塊 */
 
-  /* About 工具 chip 的灰階深淺（依性質分類，不用色相）；亮色用壓暗做深淺 */
-  --chip-think: rgba(0, 0, 0, 0.1);
-  --chip-design: rgba(0, 0, 0, 0.045);
-
   /* 背景光斑的三個顏色（橘紅／靛藍／天藍） */
   --blob-1: rgba(224, 83, 47, 0.16);
   --blob-2: rgba(99, 102, 241, 0.14);
@@ -66,10 +62,6 @@
   --glass-raised-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
 
   --glass-sunken-bg: rgba(0, 0, 0, 0.22);
-
-  /* 暗色用提亮做深淺 */
-  --chip-think: rgba(255, 255, 255, 0.18);
-  --chip-design: rgba(255, 255, 255, 0.08);
 
   --blob-1: rgba(224, 83, 47, 0.22);   /* 暗底上光斑稍微加濃 */
   --blob-2: rgba(99, 102, 241, 0.2);
@@ -317,20 +309,24 @@ body {
   }
 }
 
-/* 點擊展開：索引面板從名片右側滑入 */
-@keyframes panel-in {
-  from {
-    opacity: 0;
-    transform: translateX(-12px) scale(0.97);
+/* 首屏「往下探索」提示：緩慢上下跳動，示意頁面可往下捲 */
+@keyframes scroll-cue {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
   }
-  to {
+  50% {
+    transform: translateY(6px);
     opacity: 1;
-    transform: translateX(0) scale(1);
   }
 }
 
-/* 無障礙：使用者若在系統開啟「減少動態」，關閉漂浮與進場動畫 */
+/* 無障礙：使用者若在系統開啟「減少動態」，關閉動畫與平滑捲動 */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   [data-card-entrance],
   [data-card-float] {
     animation: none !important;
@@ -343,5 +339,9 @@ body {
   /* 開場揭幕直接消失 */
   .intro-veil {
     display: none !important;
+  }
+  /* 往下探索提示：停止跳動 */
+  [href="#about"] {
+    animation: none !important;
   }
 }
