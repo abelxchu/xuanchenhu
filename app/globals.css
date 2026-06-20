@@ -178,18 +178,18 @@ body {
   justify-content: center;
   background: var(--bg);
   pointer-events: none;
-  animation: intro-veil-out 1.4s ease forwards;
+  animation: intro-veil-out 3.2s ease forwards;
 }
 .intro-veil span {
   font-weight: 600;
   font-size: 0.95rem;
   letter-spacing: 0.3em;
   color: var(--fg);
-  animation: intro-word 1.4s ease forwards;
+  animation: intro-word 3.2s ease-in-out forwards;
 }
 @keyframes intro-veil-out {
   0%,
-  35% {
+  62% {
     opacity: 1;
   }
   100% {
@@ -200,11 +200,14 @@ body {
 @keyframes intro-word {
   0% {
     opacity: 0;
-    letter-spacing: 0.55em;
+    letter-spacing: 0.6em;
   }
-  30% {
-    opacity: 0.85;
-    letter-spacing: 0.3em;
+  50% {
+    opacity: 0.92;
+    letter-spacing: 0.32em;
+  }
+  62% {
+    opacity: 0.92;
   }
   100% {
     opacity: 0;
