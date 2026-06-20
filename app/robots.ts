@@ -11,6 +11,7 @@ export const dynamic = "force-static";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: { userAgent: "*", allow: "/" }, // 所有爬蟲、所有頁面都可以爬
-    sitemap: new URL("/sitemap.xml", site.url).href,
+    sitemap: `${site.url}/sitemap.xml`, // 字串拼接，保留子路徑
+
   };
 }

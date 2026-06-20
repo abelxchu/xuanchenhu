@@ -40,7 +40,9 @@ export default function PhotographyPage() {
       </p>
 
       {/* Coverflow：中央大圖、兩側傾斜，點側圖／箭頭／圓點切換 */}
-      <PhotoCoverflow photos={photos} />
+      <div className="reveal">
+        <PhotoCoverflow photos={photos} />
+      </div>
     </div>
   );
 }

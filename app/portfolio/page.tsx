@@ -72,7 +72,7 @@ export default function PortfolioPage() {
       </h1>
 
       {/* ---------- 開場：職涯歷程敘事（產品 → 人 → 商業） ---------- */}
-      <section className="space-y-5 text-base leading-relaxed sm:text-lg">
+      <section className="reveal space-y-5 text-base leading-relaxed sm:text-lg">
         <p>
           My professional journey has taken me across different domains of
           products, people, and business.
@@ -98,9 +98,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* ---------- 能力領域：第一排三張 ---------- */}
-      <section className="mt-12 grid gap-4 sm:grid-cols-3">
+      <section className="reveal mt-12 grid gap-4 sm:grid-cols-3">
         {practices.slice(0, 3).map((p) => (
-          <div key={p.title} className="glass rounded-3xl p-6">
+          <div key={p.title} className="glass card-hover rounded-3xl p-6">
             <h2 className="mb-2 text-lg font-medium tracking-tight">
               {p.title}
             </h2>
@@ -109,9 +109,9 @@ export default function PortfolioPage() {
         ))}
       </section>
       {/* ---------- 能力領域：第二排兩張（較寬、填滿邊界） ---------- */}
-      <section className="mt-4 grid gap-4 sm:grid-cols-2">
+      <section className="reveal mt-4 grid gap-4 sm:grid-cols-2">
         {practices.slice(3).map((p) => (
-          <div key={p.title} className="glass rounded-3xl p-6">
+          <div key={p.title} className="glass card-hover rounded-3xl p-6">
             <h2 className="mb-2 text-lg font-medium tracking-tight">
               {p.title}
             </h2>
@@ -121,7 +121,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ---------- Field of Study（知識系統），用上分隔線分段 ---------- */}
-      <section className="mt-16 border-t border-line pt-12">
+      <section className="reveal mt-16 border-t border-line pt-12">
         <h2 className="mb-3 text-2xl font-medium tracking-tight">
           Field of Study
         </h2>
@@ -140,7 +140,7 @@ export default function PortfolioPage() {
                   href={field.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass group flex h-36 flex-col justify-between rounded-3xl p-6 transition-transform hover:-translate-y-0.5"
+                  className="glass card-hover group flex h-36 flex-col justify-between rounded-3xl p-6"
                 >
                   <span className="text-xl font-medium leading-snug tracking-tight transition-colors group-hover:text-accent">
                     {field.title}
@@ -173,7 +173,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ---------- 最後：作品保密說明 ＋ Request the Portfolio CTA ---------- */}
-      <section className="mt-16 border-t border-line pt-12">
+      <section className="reveal mt-16 border-t border-line pt-12">
         <p className="mb-5 text-base text-muted">
           Contact me to request the full portfolio.
         </p>

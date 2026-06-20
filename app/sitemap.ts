@@ -9,9 +9,11 @@ import { site, nav } from "@/lib/site";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 首頁＋導航裡的每一頁，組成完整網址清單
-  return ["/", ...nav.map((n) => n.href)].map((path) => ({
-    url: new URL(path, site.url).href,
+  // 首頁＋導航裡的每一頁。site.url 已含子路徑，所以用字串拼接：
+  // new URL("/about", base) 會把 "/about" 當域根、丟掉 /xuanchenhu 子路徑。
+  // trailingSlash: true，故每個網址補尾斜線。
+  return ["", ...nav.map((n) => n.href)].map((path) => ({
+    url: `${site.url}${path}/`,
     lastModified: new Date(),
   }));
 }

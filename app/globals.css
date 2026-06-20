@@ -166,12 +166,40 @@ body::before {
     radial-gradient(35% 35% at 82% 18%, var(--blob-2), transparent 70%),
     radial-gradient(45% 40% at 60% 88%, var(--blob-3), transparent 70%),
     var(--bg);
+  /* 光暈隨游標緩慢位移（變數由 PointerGlow 元件更新），多一層空間視差 */
+  transform: translate3d(var(--glow-x, 0px), var(--glow-y, 0px), 0);
+  transition: transform 0.5s ease-out;
+  will-change: transform;
 }
 
 /* 反白選取文字時的顏色：品牌色底、白字 */
 ::selection {
   background: var(--accent);
   color: #fff;
+}
+
+/* ---------- 捲動進場（Reveal 元件用）----------
+   元素預設淡出下移，進入視窗時加 .in-view 浮上來。 */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.6s ease-out,
+    transform 0.6s ease-out;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- 卡片 hover：單純浮起 ---------- */
+.card-hover {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
 }
 
 /* ============================================================
@@ -218,5 +246,10 @@ body::before {
   [data-card-entrance],
   [data-card-float] {
     animation: none !important;
+  }
+  /* 捲動進場直接顯示、不位移 */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

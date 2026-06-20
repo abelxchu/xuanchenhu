@@ -60,7 +60,7 @@ export default function AboutPage() {
       </header>
 
       {/* ---------- 自我介紹（直接放在光暈背景上，不加玻璃，保持輕盈） ---------- */}
-      <section className="space-y-5 text-base leading-relaxed sm:text-lg">
+      <section className="reveal space-y-5 text-base leading-relaxed sm:text-lg">
         <p>I&apos;m Abel.</p>
         <p>
           I studied political science, which sparked my interest in how people,
@@ -92,7 +92,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- 工具區：玻璃面板＋玻璃膠囊（chip） ---------- */}
-      <section className="glass mt-12 rounded-3xl p-6 sm:p-8">
+      <section className="glass reveal mt-12 rounded-3xl p-6 sm:p-8">
         <h2 className="mb-2 text-2xl font-medium tracking-tight">
           Tools I think with
         </h2>
@@ -117,7 +117,7 @@ export default function AboutPage() {
       </section>
 
       {/* ---------- 聯絡方式（只放 Email，不放電話），玻璃面板 ---------- */}
-      <section className="glass mt-6 rounded-3xl p-6 sm:p-8">
+      <section className="glass reveal mt-6 rounded-3xl p-6 sm:p-8">
         <h2 className="mb-6 text-2xl font-medium tracking-tight">Contact</h2>
         {/* dl/dt/dd = 「名稱：值」的語意化標籤，例如「Email: xxx」 */}
         <dl className="space-y-3 text-base">

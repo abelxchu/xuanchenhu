@@ -8,6 +8,8 @@ import { Poppins, Noto_Sans_TC } from "next/font/google";
 import Script from "next/script";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
+import { PointerGlow } from "@/components/pointer-glow";
+import { ScrollReveal } from "@/components/scroll-reveal";
 import { site } from "@/lib/site";
 import "./globals.css";
 
@@ -53,6 +55,29 @@ export const metadata: Metadata = {
 // 目的是避免暗色模式使用者進站時「先閃一下白底再變黑」。
 const themeInit = `(function(){try{var t=localStorage.theme;if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()`;
 
+// Person 結構化資料（JSON-LD）：直接告訴 Google「Xuan-Chen Hu 是誰」，
+// 有機會在搜尋名字時顯示 rich result／知識面板。
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  alternateName: "Abel Hu",
+  jobTitle: site.role,
+  description: site.description,
+  url: site.url,
+  email: `mailto:${site.email}`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Taipei",
+    addressCountry: "TW",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "National Taipei University",
+  },
+  sameAs: site.socials.map((s) => s.href), // 各社群連結，幫 Google 串起同一個人
+};
+
 export default function RootLayout({
   children, // children = 各頁面的內容，會塞進下面的 <main> 裡
 }: Readonly<{ children: React.ReactNode }>) {
@@ -66,6 +91,13 @@ export default function RootLayout({
       >
         {/* 主題初始化腳本，必須放在最前面、比畫面先執行 */}
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        {/* Person 結構化資料（SEO） */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+        <PointerGlow />
+        <ScrollReveal />
         <Header />
         {/* flex flex-col 讓頁面內容可用 flex-1 填滿、垂直置中（首頁名片用到）；
             flex-1 撐開剩餘高度把 footer 推到底；

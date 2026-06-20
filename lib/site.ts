@@ -12,8 +12,8 @@ export const site = {
   title: "Xuan-Chen Hu — Consultant", // 瀏覽器分頁標題、分享預覽標題
   description:
     "Consultant in Taipei working across business strategy and customer experience — bridging ToB commercial strategy and ToC user research, rooted in social science.",
-  // TODO: 部署後換成實際網域（影響社群分享預覽的連結與 sitemap）
-  url: "https://xuanchenhu.com",
+  // 線上實際網址（GitHub Pages 子路徑）；影響 OG 連結、sitemap、canonical
+  url: "https://abelxchu.github.io/xuanchenhu",
   email: "abelhu.tw@gmail.com",
   location: "Taipei, Taiwan",
   gaId: "G-HGR5WFET0D",          // Google Analytics 追蹤 ID
